@@ -1,0 +1,53 @@
+body {
+    display: flex;
+}
+
+#calc {
+    display: flex;
+    flex-flow: column wrap;
+    width: 200px;
+    height: 300px;
+    box-sizing: content-box;
+    margin: auto;
+    padding: 10px;
+    align-items: center;
+    border: 2px solid grey;
+    justify-content: flex-start;
+}
+
+#screen {
+    display: flex;
+    width: 150px;
+    height: 75px;
+    margin: 10px;
+    box-sizing: content-box;
+    border: 2px solid grey;
+    flex: 0 1 auto;
+    align-self: stretch;
+    padding: 10px;
+}
+
+#buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#buttons > div {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+button {
+    height: 30px;
+    width: 30px;
+    margin: 2px;
+}
+
+#zero {
+    flex: 1 1 auto;
+}
+
+#digits {
+    padding: 5px;
+}
