@@ -6,6 +6,20 @@ screen.style.alignItems = 'flex-end'
 let n1, op, n2
 n1 = n2 = ''
 let ops = ['+','-','*','/']
+let operate = (n1,n2,op) => {
+    switch(op) {
+        case '+':
+            return n1+n2
+        case '-':
+            return n1-n2
+        case '*':
+            return n1*n2
+        case '/':
+            return n1/n2
+        default:
+            return 'Invalid'
+    }
+}
 buttons.addEventListener('click',(event) => {
     if(event.target.matches('button')) {
         if(event.target.textContent==='CE') {
@@ -13,7 +27,14 @@ buttons.addEventListener('click',(event) => {
             n1 = n2 = ''
             op = undefined
         }
-        if(op===undefined && !Number.isNaN(Number(event.target.textContent))) {
+        if(ops.includes(event.target.textContent) && op!==undefined && typeof n1 === 'number' && n2!=='') {
+            n2 = Number(n2)
+            n1 = operate(n1,n2,op)
+            op = event.target.textContent
+            screen.textContent = n1+op
+            n2 = ''
+        }
+        else if(op===undefined && !Number.isNaN(Number(event.target.textContent))) {
             n1 += event.target.textContent
             screen.textContent = n1
             console.log('ok1')
@@ -37,22 +58,7 @@ buttons.addEventListener('click',(event) => {
         else if(event.target.textContent==='=') {
             console.log(n1,n2,op)
             n2 = Number(n2)
-            switch(op) {
-                case '+':
-                    screen.textContent = n1+n2
-                    break;
-                case '-':
-                    screen.textContent = n1-n2
-                    break;
-                case '*':
-                    screen.textContent = n1*n2
-                    break;
-                case '/':
-                    screen.textContent = n1/n2
-                    break;
-                default:
-                    screen.textContent = 'Invalid'
-            }
+            screen.textContent = operate(n1,n2,op)
             n1 = n2 = ''
             op = undefined
         }
